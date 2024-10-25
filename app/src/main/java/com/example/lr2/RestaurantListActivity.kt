@@ -1,31 +1,33 @@
 package com.example.lr2
 
-import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.lr2.databinding.ActivityDeliveryAddressMapBinding
+import android.os.Bundle
+import android.widget.SearchView
+
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.example.lr2.databinding.ActivityRestaurantListBinding
 
-class DeliveryAddressMapActivity : AppCompatActivity(), OnMapReadyCallback {
+class RestaurantListActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
-    private lateinit var binding: ActivityDeliveryAddressMapBinding
+    private lateinit var binding: ActivityRestaurantListBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityDeliveryAddressMapBinding.inflate(layoutInflater)
+        binding = ActivityRestaurantListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         var actionBar = getSupportActionBar()
 
         if (actionBar != null) {
             actionBar.setHomeAsUpIndicator(R.drawable.ic_back_vector);
-            actionBar.setTitle("Выбрать адрес на карте")
+            actionBar.setTitle("Рестораны")
             // showing the back button in action bar
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
@@ -34,8 +36,6 @@ class DeliveryAddressMapActivity : AppCompatActivity(), OnMapReadyCallback {
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
-
-
     }
 
     /**
@@ -51,10 +51,10 @@ class DeliveryAddressMapActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap = googleMap
 
         // Add a marker in Sydney and move the camera
-        val myAddress = LatLng(53.34542, 83.78204)
-        mMap.addMarker(MarkerOptions().position(myAddress).title("Ленина, 46"))
+        val grilnica = LatLng(53.34395,83.78078)
+        mMap.addMarker(MarkerOptions().position(grilnica).title("Ленина, 47"))
 
         val defaultZoom = 15.0f
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myAddress, defaultZoom))
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(grilnica, defaultZoom))
     }
 }

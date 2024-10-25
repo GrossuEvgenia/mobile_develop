@@ -8,10 +8,12 @@
     <string name="adress">Адреса доставки</string>
     <string name="order_story">История заказов</string>
     <string name="out">Выйти из аккаута</string>
+    <string name="restaurant_list">Список ресторанов</string>
 
     <string-array name="sex">
         <item>Жен</item>
         <item>Муж</item>
     </string-array>
     <string name="title_activity_delivery_address_map">Выбрать адрес на карте</string>
+    <string name="title_activity_restaurant_list">Рестораны на карте</string>
 </resources>

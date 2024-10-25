@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.lr2.AddressActivity
 import com.example.lr2.FillPersonDataParamsActivity
 import com.example.lr2.R
+import com.example.lr2.RestaurantListActivity
 import com.example.lr2.databinding.FragmentPersonBinding
 
 class PersonFragment : Fragment() {
@@ -42,6 +43,12 @@ class PersonFragment : Fragment() {
         address.setOnClickListener {
             // Переход на экран с заполнением адреса
             val intent = Intent(activity, AddressActivity::class.java)
+            startActivity(intent)
+        }
+        val restaurant_list : TextView = root.findViewById<TextView>(R.id.restaurant_list)
+        restaurant_list.setOnClickListener {
+            // Переход на экран с ресторанами
+            val intent = Intent(activity, RestaurantListActivity::class.java)
             startActivity(intent)
         }
         return root
