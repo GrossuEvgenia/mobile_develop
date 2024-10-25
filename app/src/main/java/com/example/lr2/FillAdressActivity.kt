@@ -1,6 +1,8 @@
 package com.example.lr2
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 
 class FillAdressActivity : AppCompatActivity() {
@@ -15,6 +17,13 @@ class FillAdressActivity : AppCompatActivity() {
             actionBar.setTitle("Добавление адреса")
             // showing the back button in action bar
             actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+
+        val addAddrOnCart : Button = findViewById(R.id.addAddrOnCart)
+
+        addAddrOnCart.setOnClickListener {
+            val intent = Intent(this, DeliveryAddressMapActivity::class.java)
+            startActivity(intent)
         }
     }
 

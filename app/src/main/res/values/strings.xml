@@ -13,4 +13,5 @@
         <item>Жен</item>
         <item>Муж</item>
     </string-array>
+    <string name="title_activity_delivery_address_map">Выбрать адрес на карте</string>
 </resources>
