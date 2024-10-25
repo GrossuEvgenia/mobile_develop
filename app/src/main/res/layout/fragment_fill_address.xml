@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+<!--    <com.google.android.material.appbar.AppBarLayout-->
+<!--        android:id="@+id/appbar"-->
+<!--        style="@style/NoActionBarTheme"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:elevation="0dp"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent">-->
+
+<!--        <com.google.android.material.appbar.MaterialToolbar-->
+<!--            android:id="@+id/toolbar"-->
+<!--            style="@style/Widget.MaterialComponents.Toolbar.PrimarySurface"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="?attr/actionBarSize"-->
+<!--            app:title="Мои данные"-->
+<!--            app:navigationIcon="@drawable/ic_back_vector"-->
+<!--            android:clickable="true"/>-->
+
+<!--    </com.google.android.material.appbar.AppBarLayout>-->
+
+    <TextView
+        android:id="@+id/textFirst"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/person_menu_btn_style"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="1. Укажите адрес"
+        android:textSize="30sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/addAddrOnCart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:drawableLeft="@drawable/ic_place"
+        android:text="Указать на карте"
+        android:textAllCaps="false"
+        app:layout_constraintTop_toBottomOf="@id/textFirst"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/streetTextInputLayout"
+        style="@style/TextInputLayoutBoxColor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:hint="Улица"
+        app:endIconMode="clear_text"
+        app:errorEnabled="true"
+        app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toBottomOf="@id/addAddrOnCart"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/street"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:inputType="text" />
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/homeTextInputLayout"
+        style="@style/TextInputLayoutBoxColor"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:hint="Дом"
+        app:endIconMode="clear_text"
+        app:errorEnabled="true"
+        app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toBottomOf="@id/streetTextInputLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/flatTextInputLayout"
+        app:layout_constraintWidth_percent="0.5">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/home"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:inputType="text" />
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/flatTextInputLayout"
+        style="@style/TextInputLayoutBoxColor"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:hint="Квартира"
+        app:errorEnabled="true"
+        app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toBottomOf="@id/streetTextInputLayout"
+        app:layout_constraintStart_toEndOf="@id/homeTextInputLayout"
+        app:layout_constraintEnd_toEndOf="parent">
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/flat"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/commentTextInputLayout"
+        style="@style/TextInputLayoutBoxColor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:hint="Комментарий к адресу"
+        app:endIconMode="clear_text"
+        app:errorEnabled="true"
+        app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toBottomOf="@id/homeTextInputLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/comment"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:inputType="text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:background="@color/color_line"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/commentTextInputLayout" />
+
+    <TextView
+        android:id="@+id/textSecond"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/person_menu_btn_style"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="2. Название"
+        android:textSize="30sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintTop_toBottomOf="@id/line"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/nameHomeTextInputLayout"
+        style="@style/TextInputLayoutBoxColor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:hint="Например: дом"
+        app:endIconMode="clear_text"
+        app:errorEnabled="true"
+        app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toBottomOf="@id/textSecond"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/nameHome"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:inputType="text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/saveButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:text="Сохранить"
+        android:textAllCaps="false"
+        app:layout_constraintTop_toBottomOf="@id/nameHomeTextInputLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
