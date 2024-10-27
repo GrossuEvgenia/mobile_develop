@@ -1,4 +1,4 @@
-package com.example.lr2.ui.person
+package com.example.lr2.ui.personinfo.person
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,9 +8,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.lr2.AddressActivity
-import com.example.lr2.FillPersonDataParamsActivity
+import com.example.lr2.activity.personinfo.AddressActivity
+import com.example.lr2.activity.personinfo.FillPersonDataParamsActivity
 import com.example.lr2.R
+import com.example.lr2.activity.personinfo.OrderStoryActivity
 import com.example.lr2.databinding.FragmentPersonBinding
 
 class PersonFragment : Fragment() {
@@ -36,12 +37,21 @@ class PersonFragment : Fragment() {
         personData.setOnClickListener {
             // Переход на экран с заполнением даты
             val intent = Intent(activity, FillPersonDataParamsActivity::class.java)
+            intent.putExtra("id",123)
             startActivity(intent)
         }
         val address : TextView = root.findViewById<TextView>(R.id.add_adress)
         address.setOnClickListener {
             // Переход на экран с заполнением адреса
             val intent = Intent(activity, AddressActivity::class.java)
+            intent.putExtra("id", 124)
+            startActivity(intent)
+        }
+
+        val orderStory : TextView = root.findViewById<TextView>(R.id.order_story)
+        orderStory.setOnClickListener {
+            // Переход на экран с заполнением адреса
+            val intent = Intent(activity, OrderStoryActivity::class.java)
             startActivity(intent)
         }
         return root

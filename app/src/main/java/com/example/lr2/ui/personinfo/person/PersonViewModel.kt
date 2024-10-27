@@ -1,4 +1,4 @@
-package com.example.lr2.ui.person
+package com.example.lr2.ui.personinfo.person
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

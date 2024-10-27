@@ -1,21 +1,23 @@
-package com.example.lr2
+package com.example.lr2.activity.personinfo
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.lr2.R
 
-class FillAdressActivity : AppCompatActivity() {
+/***
+ * Класс активити для истории заказов
+ */
+class OrderStoryActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_fill_address)
+        setContentView(R.layout.fragment_order_activity)
         var actionBar = getSupportActionBar()
 
-        // showing the back button in action bar
+        //настройка top app bar
         if (actionBar != null) {
             actionBar.setHomeAsUpIndicator(R.drawable.ic_back_vector);
-            actionBar.setTitle("Добавление адреса")
-            // showing the back button in action bar
+            actionBar.setTitle("История заказов")
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
     }
-
 }
