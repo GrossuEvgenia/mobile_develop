@@ -1,35 +1,30 @@
-package com.example.lr2.ui.adress
+package com.example.lr2.ui.personinfo.fillpersdata
 
-import android.content.Intent
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.fragment.app.Fragment
-import com.example.lr2.FillAdressActivity
-import com.example.lr2.R
-import com.example.lr2.databinding.FragmentFillpersdataBinding
+import com.example.lr2.databinding.FragmentPersonBinding
 
-class AddressFragment : Fragment() {
+/***
+ * Класс для фрагмента с заполнением данных пользователя
+ */
+class FillPersDataFragment : Fragment() {
 
-    private var _binding: FragmentFillpersdataBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
+    private var _binding: FragmentPersonBinding? = null
     private val binding get() = _binding!!
 
+
+    @SuppressLint("ResourceType")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
-        _binding = FragmentFillpersdataBinding.inflate(inflater, container, false)
+        _binding = FragmentPersonBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
-
-
         return root
     }
 

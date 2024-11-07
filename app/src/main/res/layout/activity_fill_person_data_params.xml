@@ -5,7 +5,14 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FillPersonDataParamsActivity">
+    android:parentActivityName="com.example.lr2.MainActivity"
+    tools:context=".activity.personinfo.FillPersonDataParamsActivity">
 
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerView"
+        android:name="com.example.lr2.ui.personinfo.person.PersonFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints" />
 </androidx.constraintlayout.widget.ConstraintLayout>
