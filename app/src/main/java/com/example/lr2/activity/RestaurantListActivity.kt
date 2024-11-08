@@ -14,6 +14,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 
 
@@ -23,6 +24,7 @@ class RestaurantListActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var binding: ActivityRestaurantListBinding
 
     var restaurantList = mutableListOf<Pair<LatLng, String>>() //список ресторанов (их координаты и адреса)
+    private val markers = mutableListOf<Marker>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,6 +64,14 @@ class RestaurantListActivity : AppCompatActivity(), OnMapReadyCallback {
         mListView.setOnItemClickListener(OnItemClickListener { _, _, position, _ ->
             val location = restaurantList[position].first
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 16f))
+
+            for (marker in markers) {
+                if(restaurantList[position].first == marker.position)
+                {
+                    marker.showInfoWindow()
+                    break
+                }
+            }
         })
     }
 
@@ -69,7 +79,7 @@ class RestaurantListActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap = googleMap
 
         for (location in restaurantList) {
-            mMap.addMarker(MarkerOptions().position(location.first).title(location.second))
+            markers.add(mMap.addMarker(MarkerOptions().position(location.first).title(location.second))!!)
         }
         val defaultZoom = 14.8f
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(restaurantList[0].first, defaultZoom))
