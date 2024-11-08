@@ -1,8 +1,11 @@
 package com.example.lr2.activity
 
 import android.os.Bundle
+import android.widget.AdapterView.OnItemClickListener
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.lr2.R
 import com.example.lr2.databinding.ActivityRestaurantListBinding
@@ -12,6 +15,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+
 
 class RestaurantListActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -53,6 +57,12 @@ class RestaurantListActivity : AppCompatActivity(), OnMapReadyCallback {
         arrayAdapter = ArrayAdapter(this,
             android.R.layout.simple_list_item_1, restaurantList.flatMap { (x, y) -> listOf(y) }) //получить адреса из списка ресторанов
         mListView.adapter = arrayAdapter
+
+        //показать маркер на карте по нажатию на элемент в списке
+        mListView.setOnItemClickListener(OnItemClickListener { _, _, position, _ ->
+            val location = restaurantList[position].first
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 16f))
+        })
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
@@ -61,7 +71,7 @@ class RestaurantListActivity : AppCompatActivity(), OnMapReadyCallback {
         for (location in restaurantList) {
             mMap.addMarker(MarkerOptions().position(location.first).title(location.second))
         }
-        val defaultZoom = 15.0f
+        val defaultZoom = 14.8f
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(restaurantList[0].first, defaultZoom))
     }
 }
