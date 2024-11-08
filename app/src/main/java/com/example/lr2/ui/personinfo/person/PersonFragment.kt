@@ -13,6 +13,7 @@ import com.example.lr2.activity.personinfo.FillPersonDataParamsActivity
 import com.example.lr2.R
 import com.example.lr2.activity.personinfo.OrderStoryActivity
 import com.example.lr2.databinding.FragmentPersonBinding
+import com.example.lr2.activity.RestaurantListActivity
 
 class PersonFragment : Fragment() {
 
@@ -54,6 +55,14 @@ class PersonFragment : Fragment() {
             val intent = Intent(activity, OrderStoryActivity::class.java)
             startActivity(intent)
         }
+
+        val restaurant_list : TextView = root.findViewById<TextView>(R.id.restaurant_list)
+        restaurant_list.setOnClickListener {
+            // Переход на экран с ресторанами
+            val intent = Intent(activity, RestaurantListActivity::class.java)
+            startActivity(intent)
+        }
+
         return root
     }
 

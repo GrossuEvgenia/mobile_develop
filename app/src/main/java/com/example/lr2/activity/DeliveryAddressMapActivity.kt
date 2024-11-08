@@ -1,7 +1,8 @@
-package com.example.lr2
+package com.example.lr2.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.lr2.R
 import com.example.lr2.databinding.ActivityDeliveryAddressMapBinding
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap

@@ -6,6 +6,8 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.example.lr2.R
 import com.google.android.material.textfield.TextInputEditText
+import android.content.Intent
+import com.example.lr2.activity.DeliveryAddressMapActivity
 
 /***
  * Класс для экрана с заполнением адреса
@@ -24,6 +26,12 @@ class FillAdressActivity : AppCompatActivity() {
 
         //id- пользователя, получается из главного эерана с профилем
         val id: Int = intent.getIntExtra("id", 0)
+
+        val addAddrOnCart : Button = findViewById(R.id.addAddrOnCart)
+        addAddrOnCart.setOnClickListener {
+            val intent = Intent(this, DeliveryAddressMapActivity::class.java)
+            startActivity(intent)
+        }
 
         //настройка top app bar экрана
         var actionBar = getSupportActionBar()

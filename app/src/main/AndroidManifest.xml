@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,9 +15,32 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Lr2"
         tools:targetApi="31">
+
+        <!--
+             TODO: Before you run your application, you need a Google Maps API key.
+
+             To get one, follow the directions here:
+
+                https://developers.google.com/maps/documentation/android-sdk/get-api-key
+
+             Once you have your API key (it starts with "AIza"), define a new property in your
+             project's local.properties file (e.g. MAPS_API_KEY=Aiza...), and replace the
+             "YOUR_API_KEY" string in this file with "${MAPS_API_KEY}".
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAOVYRIgupAurZup5y1PRh8Ismb1A3lLao" />
+        <activity
+            android:name=".activity.RestaurantListActivity"
+            android:exported="true"
+            android:label="@string/title_activity_restaurant_list" />
+        <activity
+            android:name=".activity.DeliveryAddressMapActivity"
+            android:exported="true"
+            android:label="@string/title_activity_delivery_address_map" />
         <activity
             android:name=".activity.personinfo.PersonActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".activity.personinfo.FillPersonDataParamsActivity"
             android:exported="true"
@@ -36,11 +61,12 @@
             android:name=".activity.personinfo.AddressActivity"
             android:exported="true"
             android:parentActivityName=".activity.personinfo.PersonActivity">
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".activity.personinfo.PersonActivity" />
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.personinfo.PersonActivity" />
         </activity>
-        <activity android:name=".activity.personinfo.FillAdressActivity"
+        <activity
+            android:name=".activity.personinfo.FillAdressActivity"
             android:exported="true"
             android:parentActivityName=".activity.personinfo.AddressActivity">
             <meta-data

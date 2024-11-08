@@ -1,8 +1,8 @@
-package com.example.lr2
+package com.example.lr2.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.SearchView
+import com.example.lr2.R
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
