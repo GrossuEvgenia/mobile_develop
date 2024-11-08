@@ -61,18 +61,27 @@ class RestaurantListActivity : AppCompatActivity(), OnMapReadyCallback {
             android.R.layout.simple_list_item_1, restaurantList.flatMap { (x, y) -> listOf(y) }) //получить адреса из списка ресторанов
         mListView.adapter = arrayAdapter
 
-        //показать маркер на карте по нажатию на элемент в списке
-        mListView.setOnItemClickListener(OnItemClickListener { _, _, position, _ ->
-            val location = restaurantList[position].first
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 16f))
 
-            for (marker in markers) {
-                if(restaurantList[position].first == marker.position)
+        //показать маркер на карте по нажатию на элемент в списке c учётом фильтрации по поиску
+        mListView.setOnItemClickListener(OnItemClickListener { _, _, position, _ ->
+            val address = arrayAdapter.getItem(position)
+            for (restaurant in restaurantList) {
+                if(restaurant.second == address)
                 {
-                    marker.showInfoWindow()
+                    val location = restaurant.first
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 16f))
+
+                    for (marker in markers) {
+                        if(location == marker.position)
+                        {
+                            marker.showInfoWindow()
+                            break
+                        }
+                    }
                     break
                 }
             }
+
         })
 
         var searchView = findViewById<SearchView>(R.id.map_search)
