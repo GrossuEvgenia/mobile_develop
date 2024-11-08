@@ -1,21 +1,24 @@
 package com.example.lr2.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ArrayAdapter
+import android.widget.ListView
+import androidx.appcompat.app.AppCompatActivity
 import com.example.lr2.R
-
+import com.example.lr2.databinding.ActivityRestaurantListBinding
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.example.lr2.databinding.ActivityRestaurantListBinding
 
 class RestaurantListActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityRestaurantListBinding
+
+    var restaurantList = mutableListOf<Pair<LatLng, String>>() //список ресторанов (их координаты и адреса)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,11 +27,10 @@ class RestaurantListActivity : AppCompatActivity(), OnMapReadyCallback {
         setContentView(binding.root)
 
         var actionBar = getSupportActionBar()
-
         if (actionBar != null) {
             actionBar.setHomeAsUpIndicator(R.drawable.ic_back_vector);
             actionBar.setTitle("Рестораны")
-            // showing the back button in action bar
+            actionBar.setHomeButtonEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
@@ -36,25 +38,30 @@ class RestaurantListActivity : AppCompatActivity(), OnMapReadyCallback {
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+
+        // TODO Временно задаваемые в коде координаты и адреса ресторанов. Должны быть получены через API
+        restaurantList.add(Pair(LatLng(53.34395,83.78078), "ул Ленина, 47"))
+        restaurantList.add(Pair(LatLng(53.34633, 83.78773), "пр-т Комсомольский, 102"))
+        restaurantList.add(Pair(LatLng(53.342558, 83.768451), "ул Крупской, 91"))
+        restaurantList.add(Pair(LatLng(53.337603, 83.773561), "пр-т Красноармейский, 61"))
+        restaurantList.add(Pair(LatLng(53.34975, 83.76375), "пр-т Социалистический, 130"))
+
+        val arrayAdapter: ArrayAdapter<*>
+
+        // access the listView from xml file
+        var mListView = findViewById<ListView>(R.id.restaurant_listview)
+        arrayAdapter = ArrayAdapter(this,
+            android.R.layout.simple_list_item_1, restaurantList.flatMap { (x, y) -> listOf(y) }) //получить адреса из списка ресторанов
+        mListView.adapter = arrayAdapter
     }
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
-        // Add a marker in Sydney and move the camera
-        val grilnica = LatLng(53.34395,83.78078)
-        mMap.addMarker(MarkerOptions().position(grilnica).title("Ленина, 47"))
-
+        for (location in restaurantList) {
+            mMap.addMarker(MarkerOptions().position(location.first).title(location.second))
+        }
         val defaultZoom = 15.0f
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(grilnica, defaultZoom))
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(restaurantList[0].first, defaultZoom))
     }
 }

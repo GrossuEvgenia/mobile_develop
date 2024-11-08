@@ -16,8 +16,18 @@
     tools:context=".activity.RestaurantListActivity" />
 
     <SearchView
+        android:id="@+id/map_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#FFFFFF" />
+
+    <ListView
+        android:id="@+id/restaurant_listview"
+        android:layout_width="match_parent"
+        android:layout_height="175dp"
+        android:layout_below="@+id/map_search"
+        android:layout_marginTop="0dp"
+        android:background="#FFFBFB"
+        tools:visibility="visible" />
 
 </RelativeLayout>

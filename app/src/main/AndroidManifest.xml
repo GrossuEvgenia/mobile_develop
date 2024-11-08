@@ -33,11 +33,21 @@
         <activity
             android:name=".activity.RestaurantListActivity"
             android:exported="true"
-            android:label="@string/title_activity_restaurant_list" />
+            android:label="@string/title_activity_restaurant_list"
+            android:parentActivityName=".activity.personinfo.PersonActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.personinfo.PersonActivity" />
+        </activity>
         <activity
             android:name=".activity.DeliveryAddressMapActivity"
             android:exported="true"
-            android:label="@string/title_activity_delivery_address_map" />
+            android:label="@string/title_activity_delivery_address_map"
+            android:parentActivityName=".activity.personinfo.PersonActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.personinfo.PersonActivity" />
+        </activity>
         <activity
             android:name=".activity.personinfo.PersonActivity"
             android:exported="true" />

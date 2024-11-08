@@ -16,6 +16,8 @@ class DeliveryAddressMapActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityDeliveryAddressMapBinding
 
+    var myLocation = Pair<LatLng, String>(LatLng(53.34569, 83.7816), "Ленина, 46") //моё местоположение (координаты и адрес)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -23,11 +25,10 @@ class DeliveryAddressMapActivity : AppCompatActivity(), OnMapReadyCallback {
         setContentView(binding.root)
 
         var actionBar = getSupportActionBar()
-
         if (actionBar != null) {
             actionBar.setHomeAsUpIndicator(R.drawable.ic_back_vector);
             actionBar.setTitle("Выбрать адрес на карте")
-            // showing the back button in action bar
+            actionBar.setHomeButtonEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
@@ -39,23 +40,12 @@ class DeliveryAddressMapActivity : AppCompatActivity(), OnMapReadyCallback {
 
     }
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
-        // Add a marker in Sydney and move the camera
-        val myAddress = LatLng(53.34542, 83.78204)
-        mMap.addMarker(MarkerOptions().position(myAddress).title("Ленина, 46"))
+        mMap.addMarker(MarkerOptions().position(myLocation.first).title(myLocation.second))
 
         val defaultZoom = 15.0f
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myAddress, defaultZoom))
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myLocation.first, defaultZoom))
     }
 }
