@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.AdapterView.OnItemClickListener
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import android.widget.SearchView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -71,6 +72,29 @@ class RestaurantListActivity : AppCompatActivity(), OnMapReadyCallback {
                     marker.showInfoWindow()
                     break
                 }
+            }
+        })
+
+        var searchView = findViewById<SearchView>(R.id.map_search)
+        //поиск по списку
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                // on below line we are checking
+                // if query exist or not.
+                if (restaurantList.flatMap { (x, y) -> listOf(y) }.contains(query)) {
+                    // if query exist within list we
+                    // are filtering our list adapter.
+                    arrayAdapter.filter.filter(query)
+                }
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                // if query text is change in that case we
+                // are filtering our adapter with
+                // new text on below line.
+                arrayAdapter.filter.filter(newText)
+                return false
             }
         })
     }
