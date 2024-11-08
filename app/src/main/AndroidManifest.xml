@@ -48,6 +48,10 @@
                 android:value=".activity.personinfo.AddressActivity" />
         </activity>
         <activity
+            android:name=".activity.dishscreen.DishScreenActivity">
+
+        </activity>
+        <activity
             android:name=".activity.MainActivity"
             android:exported="true"
             android:label="@string/app_name">

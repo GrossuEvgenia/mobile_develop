@@ -1,6 +1,8 @@
 package com.example.lr2.activity
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -8,6 +10,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.lr2.R
+import com.example.lr2.activity.dishscreen.DishScreenActivity
 import com.example.lr2.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -33,5 +36,9 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
-    
+
+    fun goToDish(view: View){
+       val dishIntent = Intent(this, DishScreenActivity::class.java)
+        startActivity(dishIntent)
+    }
 }
