@@ -3,6 +3,7 @@ package com.example.lr2.activity
 import android.os.Bundle
 import android.widget.AdapterView.OnItemClickListener
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.ListView
 import android.widget.SearchView
 import android.widget.TextView
@@ -17,6 +18,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
 class RestaurantListActivity : AppCompatActivity(), OnMapReadyCallback {
@@ -106,6 +108,13 @@ class RestaurantListActivity : AppCompatActivity(), OnMapReadyCallback {
                 return false
             }
         })
+
+        val saveChoice: FloatingActionButton = findViewById(R.id.save_button)
+
+        saveChoice.setOnClickListener {
+            //TODO Сохранить выбранный адрес
+            finish()
+        }
     }
 
     override fun onMapReady(googleMap: GoogleMap) {

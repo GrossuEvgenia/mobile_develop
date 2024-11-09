@@ -1,8 +1,11 @@
 package com.example.lr2.activity
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.example.lr2.R
+import com.example.lr2.activity.personinfo.FillAdressActivity
 import com.example.lr2.databinding.ActivityDeliveryAddressMapBinding
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -10,6 +13,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class DeliveryAddressMapActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -37,7 +41,12 @@ class DeliveryAddressMapActivity : AppCompatActivity(), OnMapReadyCallback {
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
+        val saveChoice: FloatingActionButton = findViewById(R.id.save_button)
 
+        saveChoice.setOnClickListener {
+            //TODO Сохранить выбранный адрес
+            finish()
+        }
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
