@@ -3,11 +3,8 @@ package com.example.lr2.activity
 import android.os.Bundle
 import android.widget.AdapterView.OnItemClickListener
 import android.widget.ArrayAdapter
-import android.widget.Button
 import android.widget.ListView
 import android.widget.SearchView
-import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.lr2.R
 import com.example.lr2.databinding.ActivityRestaurantListBinding
@@ -28,6 +25,7 @@ class RestaurantListActivity : AppCompatActivity(), OnMapReadyCallback {
 
     var restaurantList = mutableListOf<Pair<LatLng, String>>() //список ресторанов (их координаты и адреса)
     private val markers = mutableListOf<Marker>()
+    private var markerAddress: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,6 +75,7 @@ class RestaurantListActivity : AppCompatActivity(), OnMapReadyCallback {
                         if(location == marker.position)
                         {
                             marker.showInfoWindow()
+                            markerAddress = address
                             break
                         }
                     }
@@ -113,10 +112,10 @@ class RestaurantListActivity : AppCompatActivity(), OnMapReadyCallback {
 
         saveChoice.setOnClickListener {
 
-            //TODO Сохранить выбранный адрес
+            //Сохранить выбранный адрес
             val sharedPreferences = getSharedPreferences("AppPrefs", MODE_PRIVATE)
             val editor = sharedPreferences.edit()
-            //editor.putString("currentRestaurantAddress", "Значение строки")
+            editor.putString("currentRestaurantAddress", markerAddress)
             editor.apply()
             finish()
         }

@@ -1,9 +1,8 @@
 package com.example.lr2.activity
 
-import android.location.Address
 import android.location.Geocoder
 import android.os.Bundle
-import android.util.Log
+import android.util.Pair
 import androidx.appcompat.app.AppCompatActivity
 import com.example.lr2.R
 import com.example.lr2.databinding.ActivityDeliveryAddressMapBinding
@@ -17,13 +16,12 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.util.Locale
 
-
+@Suppress("DEPRECATION")
 class DeliveryAddressMapActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityDeliveryAddressMapBinding
 
-    var myLocation = Pair<LatLng, String>(LatLng(53.34569, 83.7816), "Ленина, 46") //моё местоположение (координаты и адрес)
     private var currentMarker: Marker? = null
     private var markerAddress: String = ""
 
@@ -49,7 +47,7 @@ class DeliveryAddressMapActivity : AppCompatActivity(), OnMapReadyCallback {
         val saveChoice: FloatingActionButton = findViewById(R.id.save_button)
 
         saveChoice.setOnClickListener {
-            //TODO Сохранить выбранный адрес
+            //Сохранить выбранный адрес
             val sharedPreferences = getSharedPreferences("AppPrefs", MODE_PRIVATE)
             val editor = sharedPreferences.edit()
             editor.putString("currentDeliveryAddress", markerAddress)
@@ -61,7 +59,14 @@ class DeliveryAddressMapActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
-        currentMarker = mMap.addMarker(MarkerOptions().position(myLocation.first).title(myLocation.second))
+        val geocoder = Geocoder(this, Locale.getDefault())
+        val sharedPreferences = getSharedPreferences("AppPrefs", MODE_PRIVATE)
+        var currentDeliveryAddressText = sharedPreferences.getString("currentDeliveryAddress", "")
+        var currentDeliveryCoords = geocoder.getFromLocationName("Барнаул, $currentDeliveryAddressText", 1)
+        var myLocation = Pair<LatLng, String>(
+            currentDeliveryCoords?.get(0)?.let { LatLng(it.latitude, currentDeliveryCoords[0].longitude) }, currentDeliveryAddressText) //моё местоположение (координаты и адрес)
+
+        currentMarker = mMap.addMarker(MarkerOptions().position(myLocation.first).title("Адрес").snippet(myLocation.second))
 
         val defaultZoom = 15.0f
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myLocation.first, defaultZoom))
