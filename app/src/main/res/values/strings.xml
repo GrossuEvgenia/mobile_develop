@@ -16,5 +16,6 @@
     </string-array>
     <string name="title_activity_delivery_address_map">Выбрать адрес на карте</string>
     <string name="title_activity_restaurant_list">Рестораны на карте</string>
+    <string name="current_restaurant_first_part">"Текущий ресторан: "</string>
 
 </resources>

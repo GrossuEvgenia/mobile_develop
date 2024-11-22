@@ -1,6 +1,8 @@
 package com.example.lr2.ui.personinfo.person
 
+import android.content.Context.MODE_PRIVATE
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -62,6 +64,12 @@ class PersonFragment : Fragment() {
             val intent = Intent(activity, RestaurantListActivity::class.java)
             startActivity(intent)
         }
+
+        //заполнить строку с текущим рестораном
+        val sharedPreferences = requireContext().getSharedPreferences("AppPrefs", MODE_PRIVATE)
+        val currentRestaurantTextView = root.findViewById<TextView>(R.id.current_restaurant)
+        val currentRestaurantText: String = getString(R.string.current_restaurant_first_part) + sharedPreferences.getString("currentRestaurantAddress", "не выбран")
+        currentRestaurantTextView.setText(currentRestaurantText)
 
         return root
     }
