@@ -89,8 +89,7 @@ class DeliveryAddressMapActivity : AppCompatActivity(), OnMapReadyCallback {
             if (addresses != null) {
                 if (addresses.isNotEmpty()) {
                     // Получение строки адреса
-                    address = addresses[0].getAddressLine(0)
-
+                    address = addresses[0].thoroughfare + ", " + addresses[0].featureName
                 }
             }
         }
