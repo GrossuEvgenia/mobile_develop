@@ -25,6 +25,7 @@ class DeliveryAddressMapActivity : AppCompatActivity(), OnMapReadyCallback {
 
     var myLocation = Pair<LatLng, String>(LatLng(53.34569, 83.7816), "Ленина, 46") //моё местоположение (координаты и адрес)
     private var currentMarker: Marker? = null
+    private var markerAddress: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +50,10 @@ class DeliveryAddressMapActivity : AppCompatActivity(), OnMapReadyCallback {
 
         saveChoice.setOnClickListener {
             //TODO Сохранить выбранный адрес
+            val sharedPreferences = getSharedPreferences("AppPrefs", MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+            editor.putString("currentDeliveryAddress", markerAddress)
+            editor.apply()
             finish()
         }
     }
@@ -65,7 +70,7 @@ class DeliveryAddressMapActivity : AppCompatActivity(), OnMapReadyCallback {
             // Очищаем предыдущий маркер, если нужно (опционально)
             currentMarker?.remove()
 
-            val markerAddress = getAddressFromLatLng(latLng)
+            markerAddress = getAddressFromLatLng(latLng)
 
             // Добавляем новый маркер в место нажатия
             val markerOptions = MarkerOptions()

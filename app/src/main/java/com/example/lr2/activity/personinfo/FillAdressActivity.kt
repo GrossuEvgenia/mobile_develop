@@ -101,4 +101,17 @@ class FillAdressActivity : AppCompatActivity() {
 
     }
 
+    override fun onResume() { //обновление данных на данной Activity при возвращении с других Activity
+        super.onResume()
+        //заполнить строку с текущей улицей и строку с номером дома
+        val sharedPreferences = getSharedPreferences("AppPrefs", MODE_PRIVATE)
+        val currentStreetTextView = findViewById<TextInputEditText>(R.id.street)
+        val currentHomeTextView = findViewById<TextInputEditText>(R.id.home)
+        val partsCurrentDeliveryAddressText = sharedPreferences.getString("currentDeliveryAddress", ", ")?.split(Regex("\\s*[,]\\s*"))
+        val currentStreetText = partsCurrentDeliveryAddressText?.get(0)
+        val currentHomeText = partsCurrentDeliveryAddressText?.get(1)
+        currentStreetTextView.setText(currentStreetText)
+        currentHomeTextView.setText(currentHomeText)
+    }
+
 }
