@@ -1,19 +1,22 @@
 package com.example.lr2.activity
 
-import android.content.Intent
+import android.location.Address
+import android.location.Geocoder
 import android.os.Bundle
-import android.widget.Button
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.lr2.R
-import com.example.lr2.activity.personinfo.FillAdressActivity
 import com.example.lr2.databinding.ActivityDeliveryAddressMapBinding
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import java.util.Locale
+
 
 class DeliveryAddressMapActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -21,6 +24,7 @@ class DeliveryAddressMapActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var binding: ActivityDeliveryAddressMapBinding
 
     var myLocation = Pair<LatLng, String>(LatLng(53.34569, 83.7816), "Ленина, 46") //моё местоположение (координаты и адрес)
+    private var currentMarker: Marker? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,9 +56,47 @@ class DeliveryAddressMapActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
-        mMap.addMarker(MarkerOptions().position(myLocation.first).title(myLocation.second))
+        currentMarker = mMap.addMarker(MarkerOptions().position(myLocation.first).title(myLocation.second))
 
         val defaultZoom = 15.0f
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myLocation.first, defaultZoom))
+
+        mMap.setOnMapClickListener { latLng ->
+            // Очищаем предыдущий маркер, если нужно (опционально)
+            currentMarker?.remove()
+
+            val markerAddress = getAddressFromLatLng(latLng)
+
+            // Добавляем новый маркер в место нажатия
+            val markerOptions = MarkerOptions()
+                .position(latLng)
+                .title("Адрес")
+                .snippet(markerAddress)
+
+            currentMarker = mMap.addMarker(markerOptions)
+            currentMarker?.showInfoWindow()
+        }
+    }
+
+    @Suppress("DEPRECATION")
+    private fun getAddressFromLatLng(latLng: LatLng): String
+    {
+        var address = "адрес не найден"
+        val geocoder = Geocoder(this, Locale.getDefault())
+        try {
+            // Получаем список адресов (может вернуть несколько)
+            val addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1)
+            if (addresses != null) {
+                if (addresses.isNotEmpty()) {
+                    // Получение строки адреса
+                    address = addresses[0].getAddressLine(0)
+
+                }
+            }
+        }
+        catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return address
     }
 }

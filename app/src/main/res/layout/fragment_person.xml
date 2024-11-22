@@ -10,7 +10,7 @@
     <TextView
         android:id="@+id/current_restaurant"
         android:layout_width="0dp"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:background="@drawable/person_menu_btn_style"
         android:clickable="false"

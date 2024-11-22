@@ -112,7 +112,12 @@ class RestaurantListActivity : AppCompatActivity(), OnMapReadyCallback {
         val saveChoice: FloatingActionButton = findViewById(R.id.save_button)
 
         saveChoice.setOnClickListener {
+
             //TODO Сохранить выбранный адрес
+            val sharedPreferences = getSharedPreferences("AppPrefs", MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+            //editor.putString("currentRestaurantAddress", "Значение строки")
+            editor.apply()
             finish()
         }
     }

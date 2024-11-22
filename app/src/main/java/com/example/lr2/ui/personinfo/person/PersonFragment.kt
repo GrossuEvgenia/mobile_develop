@@ -65,13 +65,17 @@ class PersonFragment : Fragment() {
             startActivity(intent)
         }
 
+        return root
+    }
+
+    override fun onResume() { //обновление данных на данной Activity при возвращении с других Activity
+        super.onResume()
+        val root: View = binding.root
         //заполнить строку с текущим рестораном
         val sharedPreferences = requireContext().getSharedPreferences("AppPrefs", MODE_PRIVATE)
         val currentRestaurantTextView = root.findViewById<TextView>(R.id.current_restaurant)
-        val currentRestaurantText: String = getString(R.string.current_restaurant_first_part) + sharedPreferences.getString("currentRestaurantAddress", "не выбран")
+        val currentRestaurantText = getString(R.string.current_restaurant_first_part) + sharedPreferences.getString("currentRestaurantAddress", "не выбран")
         currentRestaurantTextView.setText(currentRestaurantText)
-
-        return root
     }
 
     override fun onDestroyView() {
