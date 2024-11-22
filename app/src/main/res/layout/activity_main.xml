@@ -20,12 +20,26 @@
         app:itemIconTint="@color/button_background"/>
 
     <Button
-        android:onClick="goToDish"
-        android:id="@+id/buttonzatichka"
+        android:id="@+id/buttonDish1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="тут еда"
+        android:layout_marginTop="4dp"
+        android:onClick="goToDish"
+        android:text="Блюдо 1"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonDish2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:onClick="goToDish"
+        android:text="Блюдо 2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
