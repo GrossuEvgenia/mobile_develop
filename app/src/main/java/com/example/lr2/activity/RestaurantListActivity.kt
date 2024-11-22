@@ -124,10 +124,33 @@ class RestaurantListActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
+        //добавить маркеры ресторанов на карту
         for (location in restaurantList) {
             markers.add(mMap.addMarker(MarkerOptions().position(location.first).title(location.second))!!)
         }
-        val defaultZoom = 14.8f
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(restaurantList[0].first, defaultZoom))
+
+        val sharedPreferences = getSharedPreferences("AppPrefs", MODE_PRIVATE)
+        var currentRestaurantAddressText = sharedPreferences.getString("currentRestaurantAddress", "")
+
+        //выделить на карте выбранный ранее ресторан
+        for (restaurant in restaurantList) {
+            if(restaurant.second == currentRestaurantAddressText)
+            {
+                val location = restaurant.first
+                for (marker in markers) {
+                    if(location == marker.position)
+                    {
+                        val defaultZoom = 14.8f
+                        marker.showInfoWindow()
+                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, defaultZoom))
+                        markerAddress = currentRestaurantAddressText
+                        break
+                    }
+                }
+                break
+            }
+        }
+
+        
     }
 }
