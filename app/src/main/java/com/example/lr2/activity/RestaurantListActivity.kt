@@ -10,6 +10,7 @@ import com.example.lr2.R
 import com.example.lr2.databinding.ActivityRestaurantListBinding
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
@@ -111,7 +112,6 @@ class RestaurantListActivity : AppCompatActivity(), OnMapReadyCallback {
         val saveChoice: FloatingActionButton = findViewById(R.id.save_button)
 
         saveChoice.setOnClickListener {
-
             //Сохранить выбранный адрес
             val sharedPreferences = getSharedPreferences("AppPrefs", MODE_PRIVATE)
             val editor = sharedPreferences.edit()
@@ -151,6 +151,10 @@ class RestaurantListActivity : AppCompatActivity(), OnMapReadyCallback {
             }
         }
 
-        
+        //для возможности сохранения выбранного ресторана по клику на карте
+        mMap.setOnMarkerClickListener(OnMarkerClickListener { marker ->
+            markerAddress = marker.title.toString()
+            false
+        })
     }
 }
