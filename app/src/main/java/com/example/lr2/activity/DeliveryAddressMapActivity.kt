@@ -67,6 +67,7 @@ class DeliveryAddressMapActivity : AppCompatActivity(), OnMapReadyCallback {
             currentDeliveryCoords?.get(0)?.let { LatLng(it.latitude, currentDeliveryCoords[0].longitude) }, currentDeliveryAddressText) //моё местоположение (координаты и адрес)
 
         currentMarker = mMap.addMarker(MarkerOptions().position(myLocation.first).title("Адрес").snippet(myLocation.second))
+        currentMarker?.showInfoWindow()
 
         val defaultZoom = 15.0f
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myLocation.first, defaultZoom))
