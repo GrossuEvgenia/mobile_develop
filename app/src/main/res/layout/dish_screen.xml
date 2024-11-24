@@ -29,7 +29,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/scrollView2"
-                app:srcCompat="@drawable/ic_food_menu" />
+                app:srcCompat="@drawable/caesar" />
 
             <TextView
                 android:id="@+id/textDishName"
@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:text="Имя"
                 android:textStyle="bold"
-                android:textSize="20dp"/>
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/textDishIngredients"
@@ -54,6 +54,40 @@
                 android:layout_marginTop="15dp"
                 android:text="Вес в граммах"
                 android:textSize="18dp"/>
+
+            <TextView
+                android:id="@+id/textDishSize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Размер"
+                android:textSize="18dp"/>
+
+            <RadioGroup
+                android:id="@+id/sizeRadialGroup"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+                <RadioButton
+                    android:id="@+id/sizeM"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="M"
+                    android:onClick="sizeRadialCheck1"/>
+                <RadioButton
+                    android:id="@+id/sizeL"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:text="L"
+                    android:onClick="sizeRadialCheck2"/>
+                <RadioButton
+                    android:id="@+id/sizeXXL"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:text="XXL"
+                    android:onClick="sizeRadialCheck3"/>
+            </RadioGroup>
             <TextView
                 android:id="@+id/textDishSauce"
                 android:layout_width="wrap_content"
@@ -64,53 +98,90 @@
 
             <HorizontalScrollView
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            <RadioGroup
+                android:id="@+id/sauceRadialGroup"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp">
-                <LinearLayout
+                android:orientation="horizontal">
+                <RadioButton
+                    android:id="@+id/sauceClassic"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Классический"/>
-                    <TextView
-                        android:layout_marginLeft="5dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Чесночный"/>
-                    <TextView
-                        android:layout_marginLeft="5dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Острый"/>
-                    <TextView
-                        android:layout_marginLeft="5dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Сырный"/>
-                    <TextView
-                        android:layout_marginLeft="5dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Грибной"/>
-                    <TextView
-                        android:layout_marginLeft="5dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Без соуса"/>
-                </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="Классический"/>
+                <RadioButton
+                    android:id="@+id/sauceGarlic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Чесночный"/>
+                <RadioButton
+                    android:id="@+id/sauceSpicy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Острый"/>
+                <RadioButton
+                    android:id="@+id/sauceCheesy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Сырный"/>
+                <RadioButton
+                    android:id="@+id/sauceShroomy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Грибной"/>
+                <RadioButton
+                    android:id="@+id/sauceNone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Без соуса"/>
+            </RadioGroup>
             </HorizontalScrollView>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerDishSauce"
-                android:layout_width="wrap_content"
-                android:layout_height="55dp"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
-
         </LinearLayout>
     </ScrollView>
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/dishDecreaseCounterButton"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="5dp"
+            android:text="-"
+            android:textSize="25dp"
+            android:onClick="decreaseCounter"/>
+        <TextView
+            android:id="@+id/dishCounterText"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:text="1"
+            android:gravity="center"
+            android:textSize="25dp" />
+        <Button
+            android:id="@+id/dishIncreaseCounterButton"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:text="+"
+            android:textSize="25dp"
+            android:onClick="increaseCounter"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:layout_marginStart="90dp"
+            android:textSize="20sp"
+            android:text="В корзину"/>
+        </LinearLayout>
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
     <ImageButton
         android:onClick="backFromDish"
         android:id="@+id/dishBackButton"
