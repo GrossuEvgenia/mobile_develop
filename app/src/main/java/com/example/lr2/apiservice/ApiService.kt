@@ -1,6 +1,8 @@
 package com.example.lr2.apiservice
 
 import com.example.lr2.datamodel.AddressDataModel
+import com.example.lr2.datamodel.DishCategoryDataModel
+import com.example.lr2.datamodel.DishDataModel
 import com.example.lr2.datamodel.PersonDataModel
 import retrofit.Call
 import retrofit.http.Body
@@ -26,5 +28,11 @@ interface ApiService {
 
     @POST("/saveuserAddress")
     fun saveAddress(@Body requestBody: AddressDataModel):  Call<AddressDataModel>
+
+    @GET("/dish/categories")
+    fun getDishCategories(function: () -> Unit):  Call<ArrayList<DishCategoryDataModel>>
+
+    @GET("/dishes")
+    fun getDishes(@Query("id_category") id_category: Int, function: () -> Unit):  Call<ArrayList<DishDataModel>>
 
 }

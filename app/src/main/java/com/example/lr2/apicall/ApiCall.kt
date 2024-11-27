@@ -4,6 +4,8 @@ import android.content.Context
 import android.widget.Toast
 import com.example.lr2.apiservice.ApiService
 import com.example.lr2.datamodel.AddressDataModel
+import com.example.lr2.datamodel.DishCategoryDataModel
+import com.example.lr2.datamodel.DishDataModel
 import com.example.lr2.datamodel.PersonDataModel
 import retrofit.Call
 import retrofit.Callback
@@ -111,5 +113,52 @@ class ApiCall {
                 }
             }
         })
+    }
+
+    /***
+     * Функция для получения категорий блюд
+     */
+    fun getDishCategories(context: Context, callback: (ArrayList<DishCategoryDataModel>) -> Unit) {
+
+        val retrofit: Retrofit = Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(
+            GsonConverterFactory.create()
+        ).build()
+        val service: ApiService = retrofit.create<ApiService>(ApiService::class.java)
+        val call: Call<ArrayList<DishCategoryDataModel>> = service.getDishCategories {
+            fun onResponse(response: Response<ArrayList<DishCategoryDataModel>>?, retrofit: Retrofit?) {
+                if (response!!.isSuccess) {
+                    val listDishCategory: ArrayList<DishCategoryDataModel> = response.body() as ArrayList<DishCategoryDataModel>
+                    callback(listDishCategory)
+                }
+            }
+
+            fun onFailure(t: Throwable?) {
+                // This method is called when the API request fails.
+                Toast.makeText(context, "Request Fail", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    /***
+     * Функция для получения блюда определенной категории
+     */
+    fun getDishes(context: Context, id_category: Int, callback: (ArrayList<DishDataModel>) -> Unit) {
+        val retrofit: Retrofit = Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(
+            GsonConverterFactory.create()
+        ).build()
+        val service: ApiService = retrofit.create<ApiService>(ApiService::class.java)
+        val call: Call<ArrayList<DishDataModel>> = service.getDishes(id_category) {
+            fun onResponse(response: Response<ArrayList<DishDataModel>>?, retrofit: Retrofit?) {
+                if (response!!.isSuccess) {
+                    val addr: ArrayList<DishDataModel> = response.body() as ArrayList<DishDataModel>
+                    callback(addr)
+                }
+            }
+
+            fun onFailure(t: Throwable?) {
+                // This method is called when the API request fails.
+                Toast.makeText(context, "Request Fail", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 }

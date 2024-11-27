@@ -9,6 +9,8 @@
     <string name="order_story">История заказов</string>
     <string name="out">Выйти из аккаута</string>
 
+    <string name="dish_category_tittle_text"><b>Наше меню</b></string>
+
     <string-array name="sex">
         <item>Жен</item>
         <item>Муж</item>
