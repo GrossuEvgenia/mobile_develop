@@ -1,33 +1,39 @@
 package com.example.lr2.activity.dishes
-
-import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.lr2.R
-import com.example.lr2.activity.personinfo.FillAdressActivity
+import com.example.lr2.adapters.DishesAdapter
+import com.example.lr2.apicall.MockRequests
 
 class DishesActivity : AppCompatActivity() {
 
-    lateinit var id_category_dish : TextView
-
+    lateinit var dishCategoryNameTV: TextView
+    lateinit var dishesRCV: RecyclerView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.dishes_layout)
-        //работа с полями на экране
-        id_category_dish = findViewById(R.id.tv2)
-        id_category_dish.text = intent.getIntExtra("dish_category_id", -1).toString()
-        val CategoryText = intent.getStringExtra("dish_category_name")
+
+        //получение и вывод атрибутов категории блюд
+        var dishCategoryID = intent.getIntExtra("dish_category_id", -1)
+        val dishCategoryName = intent.getStringExtra("dish_category_name")
+        dishCategoryNameTV = findViewById(R.id.dishTVTittle)
+        dishCategoryNameTV.text = dishCategoryName
+
+        dishesRCV = findViewById(R.id.DishesRCV)
+        val mock = MockRequests()
+        dishesRCV.adapter = DishesAdapter(mock.getDishes(dishCategoryID), this)
+        dishesRCV.hasFixedSize()
+        dishesRCV.layoutManager = LinearLayoutManager(this)
 
         //настройка top app bar
         val actionBar = getSupportActionBar()
         if (actionBar != null) {
             actionBar.setHomeAsUpIndicator(R.drawable.ic_back_vector);
-            actionBar.setTitle(CategoryText)
+            actionBar.setTitle(dishCategoryName)
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-
-
     }
 }

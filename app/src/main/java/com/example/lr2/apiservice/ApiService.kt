@@ -6,11 +6,9 @@ import com.example.lr2.datamodel.DishDataModel
 import com.example.lr2.datamodel.PersonDataModel
 import retrofit.Call
 import retrofit.http.Body
-import retrofit.http.Field
 import retrofit.http.GET
 import retrofit.http.POST
 import retrofit.http.Query
-import java.util.Date
 
 /***
  * Интерфейс, который определяет апи для бэка (ВОЗМОЖНО НУЖНО БУДЕТ РЕДАКТИРОВАТЬ)
