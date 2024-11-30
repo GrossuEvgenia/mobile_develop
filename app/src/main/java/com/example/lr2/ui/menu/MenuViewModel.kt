@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 class MenuViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "Здесь будет меню"
+        value = "Меню"
     }
     val text: LiveData<String> = _text
 }
