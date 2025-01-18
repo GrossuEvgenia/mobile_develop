@@ -2,19 +2,18 @@ package com.example.lr2.ui.menu
 
 import android.content.Context
 import android.os.Bundle
+import android.os.StrictMode
+import android.os.StrictMode.ThreadPolicy
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.ListView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.lr2.R
 import com.example.lr2.adapters.DishCategoryAdapter
-import com.example.lr2.apicall.ApiCall
-import com.example.lr2.apicall.MockRequests
+import com.example.lr2.apiclient.apis.DishApi
 import com.example.lr2.databinding.FragmentMenuBinding
+
 
 class MenuFragment : Fragment() {
 
@@ -36,13 +35,9 @@ class MenuFragment : Fragment() {
         _binding = FragmentMenuBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        // ToDo: удалить после подключения API
-        val mock = MockRequests()
-        binding.DishCategoryRCV.adapter = DishCategoryAdapter(mock.getDishCategory(), con)
-        // ToDo: расскоментировать после подключения API
-//        ApiCall().getDishCategories(con) { listDishCategory ->
-//            binding.DishCategoryRCV.adapter = DishCategoryAdapter(listDishCategory, con)
-//        }
+        StrictMode.setThreadPolicy(ThreadPolicy.Builder().permitAll().build())
+        val api = DishApi()
+        binding.DishCategoryRCV.adapter = DishCategoryAdapter(api.getDishCategories(), con)
         binding.DishCategoryRCV.hasFixedSize()
         binding.DishCategoryRCV.layoutManager = LinearLayoutManager(con)
 

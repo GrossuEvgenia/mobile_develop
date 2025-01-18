@@ -1,12 +1,14 @@
 package com.example.lr2.activity.dishes
 import android.os.Bundle
+import android.os.StrictMode
+import android.os.StrictMode.ThreadPolicy
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lr2.R
 import com.example.lr2.adapters.DishesAdapter
-import com.example.lr2.apicall.MockRequests
+import com.example.lr2.apiclient.apis.DishApi
 
 class DishesActivity : AppCompatActivity() {
 
@@ -23,8 +25,9 @@ class DishesActivity : AppCompatActivity() {
         dishCategoryNameTV.text = dishCategoryName
 
         dishesRCV = findViewById(R.id.DishesRCV)
-        val mock = MockRequests()
-        dishesRCV.adapter = DishesAdapter(mock.getDishes(dishCategoryID), this)
+        StrictMode.setThreadPolicy(ThreadPolicy.Builder().permitAll().build())
+        val api = DishApi()
+        dishesRCV.adapter = DishesAdapter(api.getDishes(dishCategoryID), this)
         dishesRCV.hasFixedSize()
         dishesRCV.layoutManager = LinearLayoutManager(this)
 

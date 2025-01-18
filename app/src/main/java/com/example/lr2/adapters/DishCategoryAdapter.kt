@@ -10,9 +10,9 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lr2.R
 import com.example.lr2.activity.dishes.DishesActivity
-import com.example.lr2.datamodel.DishCategoryDataModel
+import com.example.lr2.apiclient.models.DishCategoryDataModel
 
-class DishCategoryAdapter(dishCategoryListParam: ArrayList<DishCategoryDataModel>, contextParam: Context) :
+class DishCategoryAdapter(dishCategoryListParam: Array<DishCategoryDataModel>, contextParam: Context) :
     RecyclerView.Adapter<DishCategoryAdapter.ViewHolder>() {
         var dishCategoryList = dishCategoryListParam
         var context = contextParam

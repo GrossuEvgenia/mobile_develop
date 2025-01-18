@@ -1,11 +1,19 @@
 package com.example.lr2.activity.personinfo
 
 import android.os.Bundle
+import android.os.StrictMode
+import android.os.StrictMode.ThreadPolicy
 import android.util.Log
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.lr2.R
+import com.example.lr2.apiclient.apis.UserApi
+import com.example.lr2.apiclient.models.AddressDataModel
 import com.google.android.material.textfield.TextInputEditText
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 /***
  * Класс для экрана с заполнением адреса
@@ -21,7 +29,7 @@ class FillAdressActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_fill_address)
-
+        StrictMode.setThreadPolicy(ThreadPolicy.Builder().permitAll().build())
         //id- пользователя, получается из главного эерана с профилем
         val id: Int = intent.getIntExtra("id", 0)
 
@@ -40,57 +48,41 @@ class FillAdressActivity : AppCompatActivity() {
         comment = findViewById(R.id.comment)
         homeName = findViewById(R.id.nameHome)
 
-        //TODO раскоментить когда будет апи (получение инфы с бэка )
-        //    ApiCall().getUserAddress(this, id) {
-        //            addr ->
-        //            street.setText(addr.street)
-        //            home.setText(addr.home)
-        //            flat.setText(addr.flat)
-        //            comment.setText(addr.comment)
-        //            homeName.setText(addr.homeName)
 
+        val userAddress = UserApi().getUserAddress(id)
+        if(userAddress != null){
+            street.setText(userAddress.street)
+            home.setText(userAddress.home)
+            flot.setText(userAddress.flat)
+            comment.setText(userAddress.comment)
+            homeName.setText(userAddress.homeName)
+        }
 
         saveButton = findViewById(R.id.saveButton)
 
         saveButton.setOnClickListener {
-            //TODO УБРАТЬ после пояления апи
             Log.d("SAVE_DATA_STREET", street.text.toString())
             Log.d("SAVE_DATA_HOME", home.text.toString())
             Log.d("SAVE_DATA_FLAT", flot.text.toString())
             Log.d("SAVE_DATA_COMMENT", comment.text.toString())
             Log.d("SAVE_DATA_NAMEHOME", homeName.text.toString())
-            //TODO после появления апи отправка данных с формы на бэк
-            //val requestBody = AdressDataModel(
-//                idUser = id,
-//                street = street.text.toString(),
-//                home = home.text.toString(),
-//                flat = flat.text.toString(),
-//                comment = comment.text.toString(),
-//                homeName = homeName.text.toString())// Создайте тело запроса
-//
-//
-//            CoroutineScope(Dispatchers.IO).launch {
-//                ApiCall().saveAddress(requestBody, { response ->
-//                    response?.let {
-//                        if (it.isSuccess) {
-//                          Log.d("SUCCSES_SAVE_DATA", "")
-//                        } else {
-//                            Log.d("SOMETHING_WRONG", "")
-//                        }
-//                    }
-//                }, { throwable ->
-//                    // Обработка ошибки сети
-//                    runOnUiThread {
-//                        Toast.makeText(
-//                            this@FillPersonDataParamsActivity,
-//                            "Network error: ${throwable.message}",
-//                            Toast.LENGTH_SHORT
-//                        ).show()
-//                    }
-//                })
+            val requestBody = AddressDataModel(
+                idUser = id,
+                street = street.text.toString(),
+                home = home.text.toString(),
+                flat = flot.text.toString(),
+                comment = comment.text.toString(),
+                homeName = homeName.text.toString())
+
+
+            CoroutineScope(Dispatchers.IO).launch {
+                try {
+                    UserApi().saveUserAddress(requestBody)
+                    Log.d("SUCCSES_SAVE_DATA", "Сохранение успешно")
+                } catch (e : RuntimeException){
+                    Log.d("ERROR", "Ошибка сохранения")
+                }
+            }
         }
-
-
     }
-
 }
