@@ -1,0 +1,54 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#FFFFFF"
+    android:padding="16dp">
+
+    <!-- Заголовок -->
+    <TextView
+        android:id="@+id/verificationHeaderTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Введите код из SMS"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:layout_marginBottom="24dp"
+        android:textStyle="bold"
+        android:gravity="center"/>
+
+    <!-- Поле для ввода кода -->
+    <EditText
+        android:id="@+id/codeEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Введите код"
+        android:inputType="number"
+        android:maxLength="6"
+        android:background="@drawable/rounded_edittext"
+        android:padding="12dp"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Кнопка для подтверждения -->
+    <Button
+        android:id="@+id/verifyButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Подтвердить"
+        android:textAllCaps="false"
+        android:background="@drawable/rounded_button"
+        android:textColor="@android:color/white"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Повторная отправка кода -->
+    <TextView
+        android:id="@+id/resendCodeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Отправить код ещё раз"
+        android:textColor="#D32F2F"
+        android:textSize="14sp"
+        android:layout_gravity="center"/>
+</LinearLayout>

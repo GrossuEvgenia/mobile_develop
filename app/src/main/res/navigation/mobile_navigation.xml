@@ -21,7 +21,12 @@
         android:id="@+id/navigation_person"
         android:name="com.example.lr2.ui.personinfo.person.PersonFragment"
         android:label="@string/title_person"
-        tools:layout="@layout/fragment_person" />
+        tools:layout="@layout/fragment_person">
+
+        <action
+        android:id="@+id/action_personFragment_to_loginFragment"
+        app:destination="@id/loginFragment" />
+    </fragment>
 
     <action android:id="@+id/action_navigation_person_to_fill_persdata"
         app:destination="@id/fillpersdata" />
@@ -30,4 +35,26 @@
         android:name="com.example.lr2.ui.personinfo.fillpersdata.FillPersDataFragment"
         android:label="@string/title_fillpersdata"
         tools:layout="@layout/fragment_fillpersdata" />
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.lr2.ui.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login">
+
+        <action
+            android:id="@+id/action_verificationFragment_to_profileFragment"
+            app:destination="@id/verificationFragment" />
+    </fragment>
+
+    <fragment
+    android:id="@+id/verificationFragment"
+    android:name="com.example.lr2.ui.login.VerificationFragment"
+    android:label="fragment_verification"
+    tools:layout="@layout/fragment_verification">
+
+        <action
+            android:id="@id/action_verificationFragment_to_profileFragment"
+            app:destination="@id/navigation_person"/>
+    </fragment>
 </navigation>

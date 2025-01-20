@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
-    <uses-permission android:name="android.permission.INTERNET"/>
+    xmlns:tools="http://schemas.android.com/tools" >
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,14 +14,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Lr2"
-        tools:targetApi="31">
+        tools:targetApi="31" >
+        <activity
+            android:name=".activity.ui.login.LoginActivity"
+            android:exported="true"
+            android:label="@string/title_activity_login" />
+        <activity
+            android:name=".activity.ui.verification.VerificationActivity"
+            android:exported="true"
+            android:parentActivityName=".activity.ui.login.LoginActivity" />
         <activity
             android:name=".activity.personinfo.PersonActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".activity.personinfo.FillPersonDataParamsActivity"
             android:exported="true"
-            android:parentActivityName=".activity.personinfo.PersonActivity">
+            android:parentActivityName=".activity.personinfo.PersonActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.personinfo.PersonActivity" />
@@ -27,7 +37,7 @@
         <activity
             android:name=".activity.personinfo.OrderStoryActivity"
             android:exported="true"
-            android:parentActivityName=".activity.personinfo.PersonActivity">
+            android:parentActivityName=".activity.personinfo.PersonActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.personinfo.PersonActivity" />
@@ -35,14 +45,15 @@
         <activity
             android:name=".activity.personinfo.AddressActivity"
             android:exported="true"
-            android:parentActivityName=".activity.personinfo.PersonActivity">
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".activity.personinfo.PersonActivity" />
+            android:parentActivityName=".activity.personinfo.PersonActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.personinfo.PersonActivity" />
         </activity>
-        <activity android:name=".activity.personinfo.FillAdressActivity"
+        <activity
+            android:name=".activity.personinfo.FillAdressActivity"
             android:exported="true"
-            android:parentActivityName=".activity.personinfo.AddressActivity">
+            android:parentActivityName=".activity.personinfo.AddressActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.personinfo.AddressActivity" />
@@ -50,19 +61,17 @@
         <activity
             android:name=".activity.MainActivity"
             android:exported="true"
-            android:label="@string/app_name">
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-<!--        <activity android:name="com.example.lr2.activity.dishes.DishesActivity" />-->
-
+        </activity> <!-- <activity android:name="com.example.lr2.activity.dishes.DishesActivity" /> -->
         <activity
-            android:name="com.example.lr2.activity.dishes.DishesActivity"
+            android:name=".activity.dishes.DishesActivity"
             android:exported="true"
-            android:parentActivityName=".activity.MainActivity">
+            android:parentActivityName=".activity.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.MainActivity" />

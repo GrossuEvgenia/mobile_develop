@@ -1,0 +1,42 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#FFFFFF"
+    android:padding="16dp">
+
+    <!-- Логотип -->
+    <ImageView
+        android:id="@+id/logoImageView"
+        android:layout_width="232dp"
+        android:layout_height="127dp"
+        android:layout_marginBottom="32dp"
+        android:contentDescription="@string/app_logo"
+        android:src="@drawable/logo_grilnitsa" />
+
+    <!-- Поле для ввода номера телефона -->
+    <EditText
+        android:id="@+id/phoneEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Введите номер телефона"
+        android:inputType="phone"
+        android:background="@drawable/rounded_edittext"
+        android:padding="12dp"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Кнопка для входа -->
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Получить код"
+        android:textAllCaps="false"
+        android:background="@drawable/rounded_button"
+        android:textColor="@android:color/white"
+        android:layout_marginBottom="16dp"/>
+
+
+</LinearLayout>
