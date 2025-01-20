@@ -1,0 +1,284 @@
+openapi: 3.0.3
+info:
+  title: Grill mobile app
+  version: 1.0.0
+servers:
+  - url: http://10.0.2.2:8080
+tags:
+  - name: user
+    description: Operations about user
+  - name: dish
+    description: Operations about dishes
+  - name: restaurant
+    description: Operations about restaurants
+paths:
+  /user:
+    get:
+      tags:
+        - user
+      summary: get user data
+      operationId: getUserData
+      parameters:
+        - name: id
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PersonDataModel'
+    post:
+      tags:
+        - user
+      summary: Save user data
+      operationId: saveUserData
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PersonDataModel'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PersonDataModel'
+  /user/address:
+    get:
+      tags:
+        - user
+      summary: get user address
+      operationId: getUserAddress
+      parameters:
+        - name: id
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddressDataModel'
+    post:
+      tags:
+        - user
+      summary: Save user address
+      operationId: saveUserAddress
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddressDataModel'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddressDataModel'
+  /dishes:
+    get:
+      tags:
+        - dish
+      summary: get dishes
+      operationId: getDishes
+      parameters:
+        - name: idCategory
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items: 
+                  $ref: '#/components/schemas/DishDataModel'  
+  /dish/categories:
+    get:
+      tags:
+        - dish
+      summary: get dish categories
+      operationId: getDishCategories
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items: 
+                  $ref: '#/components/schemas/DishCategoryDataModel'
+  /dish:
+    get:
+      tags:
+        - dish
+      summary: get dish 
+      operationId: getDish
+      parameters:
+        - name: idDish
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DishDataModel'
+  /dish/additions:
+    get:
+      tags:
+        - dish
+      summary: get dish addition
+      operationId: getDishAddition
+      parameters:
+        - name: idDish
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items: 
+                  $ref: '#/components/schemas/AdditionModel'
+  /restaurants:
+    get:
+      tags:
+        - restaurant
+      summary: get restaurants
+      operationId: getRestaurants
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items: 
+                  $ref: '#/components/schemas/RestaurantModel'
+components:
+  schemas:
+    PersonDataModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        lastName:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+        bday:
+          type: string
+        male:
+          type: boolean
+    AddressDataModel:
+      type: object
+      properties:
+        idUser:
+          type: integer
+          format: int32
+        street:
+          type: string
+        home:
+          type: string
+        flat:
+          type: string
+        comment:
+          type: string
+        homeName:
+          type: string
+    DishCategoryDataModel:
+      type: object
+      properties:
+        idDishCategory:
+          type: integer
+          format: int32
+        name:
+          type: string
+        image_id:
+          type: integer
+          format: int32
+    DishDataModel:
+      type: object
+      properties:
+        idCategory:
+          type: integer
+          format: int32
+        idDish:
+          type: integer
+          format: int32
+        name:
+          type: string
+        idImage:
+          type: integer
+          format: int32
+        price:
+          type: integer
+          format: int32
+        weight:
+          type: integer
+          format: int32
+        description:
+          type: string
+        compose:
+          type: string
+    AdditionModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        idImage:
+          type: integer
+          format: int32
+        price:
+          type: integer
+          format: int32
+        weight:
+          type: integer
+          format: int32
+    RestaurantModel:
+      type: object
+      properties:
+        idPoint:
+          type: integer
+          format: int32
+        x:
+          type: number
+        y:
+          type: number
+        address:
+          type: string

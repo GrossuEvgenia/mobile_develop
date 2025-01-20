@@ -60,11 +60,6 @@ class FillPersonDataParamsActivity : AppCompatActivity() {
         man = findViewById(R.id.radioM)
         female = findViewById(R.id.radioF)
 
-        name.setText("ЛЮСЯ")
-        lastName.setText("ЛЮСЬЕВНА")
-        phone.setText("+6-666-666-66-66")
-        email.setText("luciq@hi.ru")
-
         val user = UserApi().getUserData(id)
         if(user != null){
             name.setText(user.name)
