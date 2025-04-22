@@ -16,7 +16,7 @@
         android:name="com.example.lr2.ui.cart.CartFragment"
         android:label="@string/title_cart"
         tools:layout="@layout/fragment_cart">
-
+        
         <action
             android:id="@+id/action_navigation_cart_to_navigation_order"
             app:destination="@id/navigation_order" />
