@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Имя -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="1. Кому привезти заказ?"
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/nameInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Введите имя"
+            android:padding="12dp"
+            android:textColor="@android:color/black"
+            android:textColorHint="#888888" />
+
+        <!-- Телефон -->
+        <EditText
+            android:id="@+id/phoneInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="Введите номер телефона"
+            android:inputType="phone"
+            android:padding="12dp"
+            android:textColor="@android:color/black"
+            android:textColorHint="#888888" />
+
+        <CheckBox
+            android:id="@+id/callbackCheck"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Перезвонить мне"
+            android:textColor="@android:color/black" />
+
+        <!-- Адрес -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="2. Выберите адрес доставки"
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/addressInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:hint="Добавить адрес"
+            android:padding="12dp"
+            android:textColor="@android:color/black"
+            android:textColorHint="#888888" />
+
+        <!-- Когда доставить -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="3. Когда доставить?"
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/deliveryTimeInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:hint="Как можно скорее"
+            android:padding="12dp"
+            android:textColor="@android:color/black"
+            android:textColorHint="#888888" />
+
+        <!-- Комментарий -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="4. Комментарий курьеру"
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/commentInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:hint="Например: сдача с 5000 рублей"
+            android:padding="12dp"
+            android:textColor="@android:color/black"
+            android:textColorHint="#888888" />
+
+        <!-- Информация о заказе -->
+        <TextView
+            android:id="@+id/orderSummary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:lineSpacingExtra="6dp"
+            android:text="Сумма заказа: 0 ₽\nСтоимость доставки: 0 ₽\nДоставим в течение: 30–45 мин\n\nИТОГО: 0 ₽"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+        <!-- Кнопка -->
+        <Button
+            android:id="@+id/confirmOrderButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/orange_dawn"
+            android:text="Оформить"
+            android:textAllCaps="false"
+            android:textColor="@android:color/black" />
+    </LinearLayout>
+</ScrollView>

@@ -9,6 +9,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lr2.R
+import com.example.lr2.logic.CartManager
 import com.example.lr2.datamodel.DishDataModel
 
 class DishesAdapter(dishesListParam: ArrayList<DishDataModel>, contextParam: Context) :
@@ -43,9 +44,9 @@ class DishesAdapter(dishesListParam: ArrayList<DishDataModel>, contextParam: Con
 //                intent.putExtra("id",123)
 //                startActivity(intent)
                 }
-                dishInCartItemBtn.setOnClickListener(){
-                    Toast.makeText(context, "Добавлено в корзину", Toast.LENGTH_SHORT).show()
-                    // Todo: Реализация добавления в корзину блюда
+                dishInCartItemBtn.setOnClickListener {
+                    CartManager.addItem(dishData)
+                    Toast.makeText(context, "${dishData.name} добавлено в корзину", Toast.LENGTH_SHORT).show()
                 }
             }
         }
